@@ -6,15 +6,15 @@
 /*   By: avauclai <avauclai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:26:37 by avauclai          #+#    #+#             */
-/*   Updated: 2025/11/12 14:02:40 by avauclai         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:15:25 by avauclai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
-	int i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
