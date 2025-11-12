@@ -6,7 +6,7 @@
 /*   By: avauclai <avauclai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:23:26 by avauclai          #+#    #+#             */
-/*   Updated: 2025/11/12 14:46:32 by avauclai         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:04:05 by avauclai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,3 +116,31 @@ char	*get_next_line(int fd)
 	left_c = set_line(line);
 	return (line);
 }
+
+// int main(int argc, char **argv)
+// {
+//     int   fd;
+//     char  *line;
+
+//     if (argc != 2)
+//     {
+//         printf("Usage: %s <filename>\n", argv[0]);
+//         return (1);
+//     }
+
+//     fd = open(argv[1], O_RDONLY);
+//     if (fd < 0)
+//     {
+//         perror("Error opening file");
+//         return (1);
+//     }
+
+//     while ((line = get_next_line(fd)) != NULL)
+//     {
+//         printf("%s", line);  // line contient déjà le '\n' si présent
+//         free(line);
+//     }
+
+//     close(fd);
+//     return (0);
+// }
