@@ -6,7 +6,7 @@
 /*   By: avauclai <avauclai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:23:26 by avauclai          #+#    #+#             */
-/*   Updated: 2025/11/12 17:17:01 by avauclai         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:50:51 by avauclai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*get_next_line(int fd)
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= FD_MAX)
 	{
 		free(left_c[fd]);
 		free(buffer);
@@ -91,7 +91,10 @@ char	*get_next_line(int fd)
 	line = fill_line_buffer(fd, left_c[fd], buffer);
 	free(buffer);
 	if (!line)
+	{
+		left_c[fd] = NULL;
 		return (NULL);
+	}
 	left_c[fd] = set_line(line);
 	return (line);
 }

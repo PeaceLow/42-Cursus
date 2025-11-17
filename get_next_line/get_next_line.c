@@ -6,7 +6,7 @@
 /*   By: avauclai <avauclai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:23:26 by avauclai          #+#    #+#             */
-/*   Updated: 2025/11/12 15:04:05 by avauclai         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:48:14 by avauclai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,9 @@ char	*get_next_line(int fd)
 		return (NULL);
 	/*
 	On ne peut pas lire 0 caracteres ou moins, risque de boucle infinie avec
-	BUFFER_SIZE = 0 et de crash avec une valeur negative ;
-	read(fd, 0, 0) verifie si le fichier existe,
-	si il y a du contenu a lire et si il est lisible (pas en modify only)
+	BUFFER_SIZE = 0 et de crash avec une valeur negative.
 	*/
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
 		free(left_c);
 		free(buffer);
@@ -112,7 +110,10 @@ char	*get_next_line(int fd)
 	line = fill_line_buffer(fd, left_c, buffer);
 	free(buffer);
 	if (!line)
+	{
+		left_c = NULL;
 		return (NULL);
+	}
 	left_c = set_line(line);
 	return (line);
 }
