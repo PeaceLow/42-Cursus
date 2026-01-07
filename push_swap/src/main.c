@@ -6,7 +6,7 @@
 /*   By: zakburak <zakburak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 12:13:25 by zakburak          #+#    #+#             */
-/*   Updated: 2025/12/20 02:50:43 by zakburak         ###   ########.fr       */
+/*   Updated: 2026/01/06 22:57:38 by zakburak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,12 @@
 
 static void	run_strategy(t_args *args, t_bench *bench)
 {
-	double	disorder;
-
 	if (args->strategy == SIMPLE)
 		sort_selection(args->stack_a, args->stack_b, bench);
+	if (args->strategy == MEDIUM)
+		sort_chunk(args->stack_a, args->stack_b, bench);
 	else if (args->strategy == ADAPTIVE || args->strategy == DEFAULT)
-	{
-		if (bench)
-			disorder = bench->disorder;
-		else
-			disorder = get_ratio_disordered(args->stack_a);
-		if (disorder < 0.2)
-			sort_selection(args->stack_a, args->stack_b, bench);
-	}
+		sort_adaptive(args->stack_a, args->stack_b, bench);
 }
 
 int	main(int argc, char	*argv[])

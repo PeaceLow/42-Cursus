@@ -14,7 +14,10 @@ RM          := rm -f
 SRCS := \
 	src/main.c \
 	src/parser.c \
-	src/sort.c \
+	src/sort_adaptive.c \
+	src/sort_simple.c \
+	src/sort_medium.c \
+	src/sort_utils.c \
 	src/stack.c \
 	src/stack_utils.c \
 	src/utils.c \
@@ -56,4 +59,10 @@ fclean: clean
 
 re: fclean all
 
+simple: all
+	shuf -i 0-9999 -n 100 | xargs ./push_swap --bench --simple
+medium: all
+	shuf -i 0-9999 -n 500 | xargs ./push_swap --bench --medium
+adaptive: all
+	shuf -i 0-9999 -n 500 | xargs ./push_swap --bench --adaptive
 .PHONY: all clean fclean re

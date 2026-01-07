@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   sort_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zakburak <zakburak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:18:57 by zakburak          #+#    #+#             */
-/*   Updated: 2025/12/20 02:51:54 by zakburak         ###   ########.fr       */
+/*   Updated: 2026/01/06 22:06:51 by zakburak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort.h"
 
-int	min_stack(t_stack *stack)
+int	min_stack_index(t_stack *stack)
 {
 	t_node	*current;
 	int		min;
@@ -72,12 +72,12 @@ void	sort_selection(t_stack *a, t_stack *b, t_bench *bench)
 
 	while (a->size > 0)
 	{
-		min_index = min_stack(a);
+		min_index = min_stack_index(a);
 		index_to_top(a, min_index, STACK_A, bench);
-		pa(a, b, bench);
+		pb(a, b, bench);
 	}
 	while (b->size > 0)
 	{
-		pa(b, a, bench);
+		pa(a, b, bench);
 	}
 }

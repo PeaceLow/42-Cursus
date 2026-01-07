@@ -6,7 +6,7 @@
 /*   By: zakburak <zakburak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 17:22:20 by zakburak          #+#    #+#             */
-/*   Updated: 2025/12/19 18:51:39 by zakburak         ###   ########.fr       */
+/*   Updated: 2026/01/06 22:06:51 by zakburak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int	sa(t_stack *stack_a, t_bench *bench);
 int	sb(t_stack *stack_b, t_bench *bench);
 int	ss(t_stack *stack_a, t_stack *stack_b, t_bench *bench);
-int	pa(t_stack *stack_b, t_stack *stack_a, t_bench *bench);
+int	pa(t_stack *stack_a, t_stack *stack_b, t_bench *bench);
 int	pb(t_stack *stack_a, t_stack *stack_b, t_bench *bench);
 int	ra(t_stack *stack_a, t_bench *bench);
 int	rb(t_stack *stack_b, t_bench *bench);
