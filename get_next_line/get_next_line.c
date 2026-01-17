@@ -95,53 +95,50 @@ char	*get_next_line(int fd)
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
-	/*
-	On ne peut pas lire 0 caracteres ou moins, risque de boucle infinie avec
-	BUFFER_SIZE = 0 et de crash avec une valeur negative.
-	*/
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
-		free(left_c);
-		free(buffer);
+		if (left_c)
+			free(left_c);
 		left_c = NULL;
-		buffer = NULL;
+		free(buffer);
 		return (NULL);
 	}
 	line = fill_line_buffer(fd, left_c, buffer);
 	free(buffer);
 	if (!line)
-	{
-		left_c = NULL;
-		return (NULL);
-	}
+		return (left_c = NULL, NULL);
 	left_c = set_line(line);
 	return (line);
 }
 
-// int main(int argc, char **argv)
+// int	main(int argc, char **argv)
 // {
-//     int   fd;
-//     char  *line;
+// 	int		fd;
+// 	char	*line;
+// 	int		line_count;
 
-//     if (argc != 2)
-//     {
-//         printf("Usage: %s <filename>\n", argv[0]);
-//         return (1);
-//     }
-
-//     fd = open(argv[1], O_RDONLY);
-//     if (fd < 0)
-//     {
-//         perror("Error opening file");
-//         return (1);
-//     }
-
-//     while ((line = get_next_line(fd)) != NULL)
-//     {
-//         printf("%s", line);  // line contient déjà le '\n' si présent
-//         free(line);
-//     }
-
-//     close(fd);
-//     return (0);
+// 	if (argc != 2)
+// 	{
+// 		printf("Usage: %s <filename>\n", argv[0]);
+// 		return (1);
+// 	}
+// 	fd = open(argv[1], O_RDONLY);
+// 	if (fd < 0)
+// 	{
+// 		perror("Error opening file");
+// 		return (1);
+// 	}
+// 	line_count = 0;
+// 	printf("===== Reading file: %s =====\n\n", argv[1]);
+// 	while ((line = get_next_line(fd)) != NULL)
+// 	{
+// 		line_count++;
+// 		printf("[Line %d] %s", line_count, line);
+// 		if (line[ft_strlen(line) - 1] != '\n')
+// 			printf(" <-- NO NEWLINE\n");
+// 		free(line);
+// 	}
+// 	printf("\n===== Total lines read: %d =====\n", line_count);
+// 	close(fd);
+// 	return (0);
 // }
