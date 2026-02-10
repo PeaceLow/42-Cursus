@@ -31,14 +31,27 @@ def main() -> None:
         cost=7,
         rarity="Legendary",
         attack_power=5,
-        defense=4,
+        defense=3,
         health=8,
-        magic_power=5,
-        mana_pool=3
+        magic_power=4,
+        mana_pool=10
     )
     print("\nCombat phase:")
     attack_result = arcane_warrior.attack(target="Enemy Orc")
     print(f"Attack result: {attack_result}")
+    defense_result = arcane_warrior.defend(incoming_damage=5)
+    print(f"Defense result: {defense_result}")
+
+    print("\nMagic phase:")
+    spell_result = arcane_warrior.cast_spell(
+        spell_name="Fireball",
+        targets=["Enemy Orc", "Enemy Goblin"]
+    )
+    print(f"Spell cast: {spell_result}")
+    mana_channel_result = arcane_warrior.channel_mana(amount=2)
+    print(f"Mana channel result: {mana_channel_result}")
+
+    print("\nMultiple interface implementation successful!")
 
 
 if __name__ == "__main__":

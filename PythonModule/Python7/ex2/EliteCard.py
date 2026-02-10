@@ -22,18 +22,24 @@ class EliteCard(Card, Combatable, Magical):
                 "damage": self.attack_power, "combat_type": "Melee"}
 
     def defend(self, incoming_damage: int) -> dict:
-        damage_after_defense = max(0, incoming_damage - self.defense)
-        self.health -= damage_after_defense
-        return {"action": "Defending", "incoming_damage": incoming_damage,
-                "damage_after_defense": damage_after_defense,
-                "remaining_health": self.health}
+        damage_taken = 0
+        damage_taken = max(0, incoming_damage - self.defense)
+        self.health -= damage_taken
+        return {"defender": self.name, "damage_taken": damage_taken,
+                "damage_blocked": self.defense,
+                "still_alive": self.health > 0}
 
     def cast_spell(self, spell_name: str, targets: list) -> dict:
-        return {"action": "Casting spell", "spell_name": spell_name,
-                "targets": targets, "magic_power_used": self.magic_power}
+        if self.mana_pool < self.magic_power:
+            return {"error": "Not enough mana to cast the spell"}
+        self.mana_pool -= self.magic_power
+        return {"caster": self.name, "spell": spell_name,
+                "targets": targets,
+                "mana_used": self.magic_power}
 
     def channel_mana(self, amount: int) -> dict:
-        return {"action": "Channeling mana", "amount": amount}
+        self.mana_pool += amount
+        return {"channeled": amount, "total_mana": self.mana_pool}
 
     def get_magic_stats(self) -> dict:
         return {"magic_power": self.magic_power, "mana_pool": self.mana_pool}
