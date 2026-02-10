@@ -9,15 +9,16 @@ def main() -> None:
     print("EliteCard capabilities:")
 
     card_methods = [
-        method for method in dir(Card) 
+        method for method in dir(Card)
         if callable(getattr(Card, method)) and not method.startswith("__")
     ]
     combatable_methods = [
-        method for method in dir(Combatable) 
-        if callable(getattr(Combatable, method)) and not method.startswith("__")
+        method for method in dir(Combatable)
+        if callable(getattr(Combatable, method))
+        and not method.startswith("__")
     ]
     magical_methods = [
-        method for method in dir(Magical) 
+        method for method in dir(Magical)
         if callable(getattr(Magical, method)) and not method.startswith("__")
     ]
     print(f"- Card: {card_methods}")
