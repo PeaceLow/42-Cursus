@@ -7,7 +7,9 @@ from ex1.ArtifactCard import ArtifactCard
 class FantasyCardFactory(CardFactory):
     def create_creature(self, name_or_power: str | int |
                         None = None) -> CreatureCard:
-        if name_or_power == "dragon" or (isinstance(name_or_power, int) and name_or_power and name_or_power > 4):
+        if (name_or_power == "dragon" or
+                (isinstance(name_or_power, int) and
+                 name_or_power and name_or_power > 4)):
             return CreatureCard("Fire Dragon", 5, "Rare", 5, 5)
         return CreatureCard("Goblin Warrior", 2, "Common", 2, 2)
 
