@@ -1,6 +1,7 @@
 from .CardFactory import CardFactory
 from .GameStrategy import GameStrategy
 
+
 class GameEngine:
     def __init__(self):
         self.factory = None
@@ -8,7 +9,8 @@ class GameEngine:
         self.hand = []
         self.battlefield = []
 
-    def configure_engine(self, factory: CardFactory, strategy: GameStrategy) -> None:
+    def configure_engine(self, factory: CardFactory,
+                         strategy: GameStrategy) -> None:
         self.factory = factory
         self.strategy = strategy
         print("Configuring Fantasy Card Game...")
@@ -23,20 +25,20 @@ class GameEngine:
             self.factory.create_creature("goblin"),
             self.factory.create_spell()
         ]
-        
+
         hand_display = []
         for c in self.hand:
             cost = c.cost
             hand_display.append(f"{c.name} ({cost})")
-        
+
         print(f"Hand: [{', '.join(hand_display)}]")
-        
+
         print("\nTurn execution:")
         print(f"Strategy: {self.strategy.get_strategy_name()}")
-        
+
         result = self.strategy.execute_turn(self.hand, self.battlefield)
         print(f"Actions: {result}")
-        
+
         return {
             'turns_simulated': 1,
             'strategy_used': self.strategy.get_strategy_name(),

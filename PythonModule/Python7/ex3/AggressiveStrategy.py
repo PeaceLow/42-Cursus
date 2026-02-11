@@ -1,31 +1,32 @@
 from .GameStrategy import GameStrategy
 import re
 
+
 class AggressiveStrategy(GameStrategy):
     def execute_turn(self, hand: list, battlefield: list) -> dict:
         hand.sort(key=lambda c: c.cost)
-        
+
         mana_pool = 5
         current_mana = 0
         cards_played = []
         damage_dealt = 0
-        
+
         for card in hand:
             if current_mana + card.cost <= mana_pool:
                 current_mana += card.cost
                 cards_played.append(card.name)
-                
+
                 if hasattr(card, 'attack'):
                     damage_dealt += card.attack
                 elif hasattr(card, 'effect_type'):
-                     desc = str(card.effect_type).lower()
-                     if "damage" in desc:
-                         nums = re.findall(r'\d+', desc)
-                         if nums:
-                             damage_dealt += int(nums[0])
-                         else:
-                             damage_dealt += 3
-            
+                    desc = str(card.effect_type).lower()
+                    if "damage" in desc:
+                        nums = re.findall(r'\d+', desc)
+                        if nums:
+                            damage_dealt += int(nums[0])
+                        else:
+                            damage_dealt += 3
+
         return {
             'cards_played': cards_played,
             'mana_used': current_mana,
