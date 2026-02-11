@@ -7,13 +7,13 @@ class AggressiveStrategy(GameStrategy):
         hand.sort(key=lambda c: c.cost)
 
         mana_pool = 5
-        current_mana = 0
+        mana_used = 0
         cards_played = []
         damage_dealt = 0
 
         for card in hand:
-            if current_mana + card.cost <= mana_pool:
-                current_mana += card.cost
+            if mana_used + card.cost <= mana_pool:
+                mana_used += card.cost
                 cards_played.append(card.name)
 
                 if hasattr(card, 'attack'):
@@ -29,7 +29,7 @@ class AggressiveStrategy(GameStrategy):
 
         return {
             'cards_played': cards_played,
-            'mana_used': current_mana,
+            'mana_used': mana_used,
             'targets_attacked': self.prioritize_targets(["Enemy Player"]),
             'damage_dealt': damage_dealt
         }
