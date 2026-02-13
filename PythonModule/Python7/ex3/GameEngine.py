@@ -19,6 +19,9 @@ class GameEngine:
         print(f"Available types: {factory.get_supported_types()}")
 
     def simulate_turn(self) -> dict:
+        if self.factory is None or self.strategy is None:
+            raise ValueError("Engine not configured. Call configure_engine().")
+
         print("\nSimulating aggressive turn...")
         self.hand = [
             self.factory.create_creature("dragon"),
