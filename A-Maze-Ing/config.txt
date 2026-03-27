@@ -1,0 +1,24 @@
+WIDTH=20
+HEIGHT=15
+ENTRY=0,0
+EXIT=19,14
+OUTPUT_FILE=maze.txt 
+PERFECT=True                 # Options: True (maze without loops), False (maze with loops)
+
+LOG_LEVEL=INFO               # Options: DEBUG, INFO, WARNING, ERROR
+DISPLAY=ASCII
+
+# -- Options additionnelles --
+SEED=42                      # Graine de generation
+ANIMATION=False              # Activer les animations
+MAZE_STYLE=epais             # Style des murs: fin, epais, massif
+WALL_COLOR=5                 # Couleurs (1: Vert, 2: Rouge, 3: Cyan, 4: Bleu, 5: Blanc, 6: Noir, 7: Magenta, 8: Jaune)
+ENTRY_COLOR=1
+EXIT_COLOR=2
+TEMPLATE_COLOR=3
+SOLVED_PATH_COLOR=8
+SEARCH_PATH_COLOR=4
+VISITING_COLOR=10            # Couleur des cellules en cours de visite (10: Rose)
+
+GENERATOR=PRIM                # Algorithme de generation: DFS, PRIM, KRUSKAL
+SOLVER=DFS                   # Algorithme de resolution: BFS, DFS
