@@ -1,0 +1,31 @@
+[project]
+name = "callmemaybe"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "flake8>=7.3.0",
+    "llm-sdk",
+    "mypy>=1.20.0",
+    "numpy>=2.4.3",
+    "pydantic>=2.12.5",
+    "regex>=2026.2.28",
+    "run>=0.3",
+    "types-regex>=2026.4.4.20260408",
+    "uv>=0.11.6",
+]
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+llm-sdk = { workspace = true }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.workspace]
+members = [
+    "llm_sdk",
+]
